@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 build-koji.sh
 setup.sh
 
