@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -ex
 
 if [ ! -d "/opt/koji/.git" ]; then
     git clone https://pagure.io/koji.git /opt/koji
