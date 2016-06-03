@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 while true; do
 	echo "Waiting for koji-hub to start..."
