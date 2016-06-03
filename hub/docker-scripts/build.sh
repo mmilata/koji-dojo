@@ -2,4 +2,4 @@
 
 DIR=$(dirname $(dirname $(realpath $0)))
 
-docker build --tag=docker.io/buildchimp/koji-dojo-hub $DIR
+docker build --tag=vrutkovs/koji-dojo-hub $DIR

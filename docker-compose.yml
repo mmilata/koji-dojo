@@ -8,7 +8,7 @@ koji-db:
         - POSTGRES_PASSWORD=mypassword
 
 koji-hub:
-    image: "docker.io/buildchimp/koji-dojo-hub"
+    image: "vrutkovs/koji-dojo-hub"
     hostname: koji-hub
     volumes:
         - /opt/koji:/opt/koji:rw
@@ -17,7 +17,7 @@ koji-hub:
         - koji-db
 
 koji-client:
-    image: "docker.io/buildchimp/koji-dojo-client"
+    image: "vrutkovs/koji-dojo-client"
     hostname: koji-client
     volumes_from:
         - koji-hub:rw
