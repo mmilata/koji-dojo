@@ -17,6 +17,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 RUN mkdir /var/run/sshd
 RUN echo 'root:mypassword' | chpasswd
 
+ADD etc/ /etc/
 ADD bin/ /usr/local/bin/
 RUN chmod +x /usr/local/bin/*
 

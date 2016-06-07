@@ -43,15 +43,8 @@ done
 
 echo "Generated configs are:"
 cat /root/.koji/config
-cp /root/.koji/config /etc/koji.conf
 
 echo "Available user-specific koji commands are:"
 ls -1 /root/bin/koji-*
 
-ssh-keygen -t rsa -N '' -f /etc/ssh/ssh_host_rsa_key
-ssh-keygen -t dsa -N '' -f /etc/ssh/ssh_host_dsa_key
-
-IP=$(find-ip.py)
-
-echo "SSHd listening on: ${IP}:22"
-/usr/sbin/sshd -D
+prepare_builder.sh

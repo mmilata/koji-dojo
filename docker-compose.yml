@@ -26,3 +26,12 @@ koji-client:
         - koji-hub:rw
     links:
         - koji-hub
+
+koji-builder:
+    image: "vrutkovs/koji-dojo-client"
+    hostname: koji-builder
+    entrypoint: /usr/local/bin/entrypoint_builder.sh
+    volumes_from:
+        - koji-hub:rw
+    links:
+        - koji-hub
