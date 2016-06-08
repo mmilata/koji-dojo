@@ -11,6 +11,7 @@ yum -y localinstall /opt/koji/noarch/koji-hub* /opt/koji/noarch/koji-builder-*.r
 rm -rf ~/osbs-client
 git clone https://github.com/projectatomic/osbs-client.git ~/osbs-client
 cd ~/osbs-client
+git rev-parse HEAD
 python setup.py install
 mkdir -p /usr/share/osbs
 cp inputs/* /usr/share/osbs
@@ -20,6 +21,7 @@ rm -rf ~/koji-containerbuild
 git clone https://github.com/release-engineering/koji-containerbuild.git ~/koji-containerbuild
 cd ~/koji-containerbuild
 git checkout develop
+git rev-parse HEAD
 # Remove install_requires
 sed -i -e '/"koji",/d' -e '/"osbs",/d' setup.py
 python setup.py install
