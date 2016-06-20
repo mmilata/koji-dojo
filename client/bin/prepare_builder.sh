@@ -14,7 +14,7 @@ KCB_SOURCE=${KCB_REMOTE:-https://github.com/release-engineering/koji-containerbu
 KCB_GITBRANCH=${KCB_BRANCH:-develop}
 
 if [ -n "${BUILDROOT_INITIAL_IMAGE}" ]; then
-  sed -i "s,build_image = .*,build_image = $BUILDROOT_IMAGE,g" /etc/osbs/osbs.conf
+  sed -i "s,build_image = .*,build_image = $BUILDROOT_INITIAL_IMAGE,g" /etc/osbs.conf
 fi
 
 # Install osbs-client
