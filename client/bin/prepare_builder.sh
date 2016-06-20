@@ -7,10 +7,21 @@ yum -y localinstall /opt/koji/noarch/koji-hub* /opt/koji/noarch/koji-builder-*.r
 
 # TODO: the guide requires httpd to be restarted on koji hub
 
+OSBS_SOURCE=${OSBS_REMOTE:-https://github.com/projectatomic/osbs-client.git}
+OSBS_GITBRANCH=${OSBS_BRANCH:-master}
+
+KCB_SOURCE=${KCB_REMOTE:-https://github.com/release-engineering/koji-containerbuild.git}
+KCB_GITBRANCH=${KCB_BRANCH:-develop}
+
+if [ -n "${BUILDROOT_INITIAL_IMAGE}" ]; then
+  sed -i "s,build_image = .*,build_image = $BUILDROOT_IMAGE,g" /etc/osbs/osbs.conf
+fi
+
 # Install osbs-client
 rm -rf ~/osbs-client
-git clone https://github.com/projectatomic/osbs-client.git ~/osbs-client
+git clone $OSBS_SOURCE ~/osbs-client
 cd ~/osbs-client
+git checkout $OSBS_GITBRANCH
 git rev-parse HEAD
 python setup.py install
 mkdir -p /usr/share/osbs
@@ -18,9 +29,9 @@ cp inputs/* /usr/share/osbs
 
 # Install koji-containerbuild
 rm -rf ~/koji-containerbuild
-git clone https://github.com/release-engineering/koji-containerbuild.git ~/koji-containerbuild
+git clone $KCB_SOURCE ~/koji-containerbuild
 cd ~/koji-containerbuild
-git checkout develop
+git checkout $KCB_GITBRANCH
 git rev-parse HEAD
 # Remove install_requires
 sed -i -e '/"koji",/d' -e '/"osbs",/d' setup.py
