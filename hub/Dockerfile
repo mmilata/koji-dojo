@@ -52,6 +52,10 @@ RUN chmod -R o+rx /etc/httpd
 RUN mkdir -p /mnt/koji/{packages,repos,work,scratch}
 RUN chown apache.apache /mnt/koji/*
 
+# make test-rpm runs "coverage erase" however the version shipped with centos6
+# doesn't like this syntax and fails, since we probably don't care anyway ...
+RUN ln -s /bin/true /usr/bin/coverage
+
 EXPOSE 80 443
 
 ENTRYPOINT /usr/local/bin/entrypoint.sh
