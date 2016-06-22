@@ -8,6 +8,7 @@ IP=$(find-ip.py || "koji-hub.local")
 
 user=$1
 kind=$2
+client=/opt/koji-clients/${user}
 
 if [ "x$user" == "x" ]; then
 	echo "Usage: $0 <username> [admin|user]"
