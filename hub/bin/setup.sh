@@ -41,6 +41,8 @@ mkuser.sh kojiadmin admin
 mkuser.sh testadmin admin
 mkuser.sh testuser
 
+make_certs.sh koji-builder
+
 chown -R nobody:nobody /opt/koji-clients
 chmod -R o+rx /var/log
 chmod -R g+rs /var/log
@@ -56,4 +58,3 @@ cert = /opt/koji-clients/kojiadmin/client.crt
 ca = /opt/koji-clients/kojiadmin/clientca.crt
 serverca = /opt/koji-clients/kojiadmin/serverca.crt
 EOF
-
